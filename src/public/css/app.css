@@ -1,0 +1,12 @@
+.user-avatar{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+.card-text{
+    height: 72px;
+}
+.card-title{
+    height: 48px;
+}
