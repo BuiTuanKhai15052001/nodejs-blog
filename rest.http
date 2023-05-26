@@ -1,0 +1,29 @@
+###
+POST http://localhost:3000/user/register
+Content-Type: application/json
+
+{
+    "email": "khaibadao02@gmail.com",
+    "password": "ab123"
+}
+
+###
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email": "khaibadao02@gmail.com" ,
+    "password": "ab123"
+}
+
+###
+POST http://localhost:3000/user/refresh-token
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDcwMWEwOWZkNzg4NWRkNjdjOGI1Y2QiLCJpYXQiOjE2ODUwNjg4NzUsImV4cCI6MTcxNjYyNjQ3NX0.NLSoTxISsOr9xlQyZ4Frl0uoESHZw-Hj4pwQmyxShcs"
+}
+
+###
+GET http://localhost:3000/user/getLists
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDViMTVkNDAxMjFhNzhmNjBhOTI1OGQiLCJpYXQiOjE2ODM2OTEwMDUsImV4cCI6MTY4MzY5NDYwNX0.Wtc_a8Zb-1DjoJSq3JhLkhlaF8HTVDT53URcIkJF1GI

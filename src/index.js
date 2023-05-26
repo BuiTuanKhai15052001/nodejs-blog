@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 var methodOverride = require('method-override');
 const route = require("./routes");
-
+require('dotenv').config();
 const db = require('./config/db');
 
 
