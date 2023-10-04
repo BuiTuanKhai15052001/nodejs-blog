@@ -9,11 +9,9 @@ const { signAccessToken, verifyAccessToken, signRefreshToken, verifyRefreshToken
 route.post('/register', async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        // if (!email || !password) {
-        //     throw createError.BadRequest();
-        // }
+        console.log("req.body:: ", req.body);
         const { error } = userValidate(req.body);
-        // //    console.log(`:::::error:`, error);
+        
 
         if (error) {
             throw createError(error.details[0].message)
@@ -31,10 +29,6 @@ route.post('/register', async (req, res, next) => {
         const saveUser = await user.save();
 
         saveUser && res.redirect('/user/user-login')
-        // return res.json({
-        //     status: 'okay',
-        //     element: saveUser
-        // })
         console.log("Register OKKKKK");
     } catch (error) {
         next(error);
@@ -79,22 +73,12 @@ route.post('/login', async (req, res, next) => {
             throw createError.Unauthorized('Password is not correct!!!')
         }
 
-        isValid && res.redirect('/courses/create')
+        isValid && res.render('/', {email})
         
-
-        const accessToken = await signAccessToken(user._id)
-        const refreshToken = await signRefreshToken(user._id)
-
-
-        // res.json({
-        //     accessToken,
-        //     refreshToken
-        // })
-        //  res.send(user);
+        // const accessToken = await signAccessToken(user._id)
+        // const refreshToken = await signRefreshToken(user._id)
 
         console.log('Login OKKKKK');
-
-
 
     } catch (error) {
         next(error)
@@ -107,22 +91,6 @@ route.post('/logout', (req, res, next) => {
 route.get('/user-register', UserController.search)
 route.get('/user-login', UserController.login)
 
-
-// route.get('/getLists', verifyAccessToken, (req, res, next) => {
-//     console.log(req.headers);
-//     const listUser = [
-//         {
-//             email: 'buituankhai2001@gmail.com'
-//         },
-//         {
-//             email: 'khaibadao15@gmail.com'
-//         }
-//     ]
-//     res.send(
-//         { listUser }
-//     )
-
-// })
 
 
 
