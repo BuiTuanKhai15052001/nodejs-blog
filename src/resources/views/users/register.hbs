@@ -9,6 +9,12 @@
             rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icomoon@1.0.0/style.min.css">
+        <!-- Toastify CSS -->
+        <link rel="stylesheet" type="text/css"
+            href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+        <!-- Toastify JavaScript -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -29,33 +35,40 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="https://png.pngtree.com/png-vector/20190613/ourlarge/pngtree-web-development-illustration-modern-can-be-used-for-landing-pages-web-png-image_1496238.jpg" alt="Image" class="img-fluid">
+                        <img
+                            src="https://png.pngtree.com/png-vector/20190613/ourlarge/pngtree-web-development-illustration-modern-can-be-used-for-landing-pages-web-png-image_1496238.jpg"
+                            alt="Image" class="img-fluid">
                     </div>
                     <div class="col-md-6 contents">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="mb-4">
                                     <h3>Sign Up</h3>
-                                    <p class="mb-4">Please register as a member so that you can study with me.</p>
+                                    <p class="mb-4">Please register as a member so that you can
+                                        study with me.</p>
                                 </div>
                                 <form method="POST" action="/user/register">
                                     <div class="form-group first">
                                         <label for="username"></label>
-                                        <input type="text" class="form-control" style="font-size: 15px;"  placeholder="Enter username" id="username" name="email">
+                                        <input type="text" class="form-control"
+                                            style="font-size: 15px;" placeholder="Enter username"
+                                            id="username" name="email">
 
                                     </div>
                                     <div class="form-group last mb-4">
                                         <label for="password"></label>
-                                        <input type="password" class="form-control" style="font-size: 15px;" id="password" name="password" placeholder="Enter password" >
+                                        <input type="password" class="form-control"
+                                            style="font-size: 15px;" id="password" name="password"
+                                            placeholder="Enter password">
 
                                     </div>
 
                                     <div class="d-flex mb-4 align-items-center">
 
                                         <span class="ml-auto">
-                                            
+
                                             Already have an account?
-                                            <a href="/user/user-login" style="font-weight: bold;" >Login</a></span>
+                                            <a href="/user/user-login" style="font-weight: bold;">Login</a></span>
                                     </div>
 
                                     <input type="submit" value="Register"
@@ -71,7 +84,7 @@
                                         <a href="#" class="twitter">
                                             <span class="icon-twitter mr-3"></span>
                                         </a>
-                                        
+
                                     </div>
                                 </form>
                             </div>
@@ -84,5 +97,124 @@
         </div>
 
     </body>
-</html>
 
+    {{!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const registrationForm = document.querySelector('form');
+        registrationForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Ngăn chặn việc gửi form mặc định
+
+            // Tạo một object mới có chứa dữ liệu form
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            // Gửi dữ liệu đến server sử dụng fetch API
+            fetch('/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json()) // Chuyển đổi dữ liệu trả về thành JSON
+            .then(data => {
+                if (data.status === 'success') { // Kiểm tra nếu đăng ký thành công
+                    // Hiển thị thông báo toast
+                    Toastify({
+                        text: "Register Successfully",
+                        duration: 3000, 
+                        close: true,
+                        gravity: "top", 
+                        position: 'right',
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        stopOnFocus: true, 
+                    }).showToast();
+                } else {
+                    // Xử lý lỗi hoặc hiển thị thông báo lỗi
+                    console.error(data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script> --}}
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const registrationForm = document.querySelector('form');
+    registrationForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Ngăn chặn việc gửi form mặc định
+
+        // Tạo một object mới có chứa dữ liệu form
+        const formData = new FormData(this);
+        const data = {
+            email: formData.get('email'),
+            password: formData.get('password')
+        };
+
+        // Gửi dữ liệu đến server sử dụng fetch API
+        fetch('/user/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            if (data.status === 'success') { // Kiểm tra nếu đăng ký thành công
+                // Hiển thị thông báo toast
+                Toastify({
+                    text: "Register Successfully",
+                    duration: 2000, 
+                    close: true,
+                    gravity: "top", 
+                    position: 'right',
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    stopOnFocus: true, // Ngưng thời gian đếm ngược khi toast được focus
+
+                }).showToast();
+
+                setTimeout(() => {
+                    window.location.href = '/user/user-login';
+                }, 2000);
+            } else {
+                // Xử lý lỗi hoặc hiển thị thông báo lỗi
+                {{!-- console.error(data.message); --}}
+                Toastify({
+            text: data.message, // Hiển thị thông báo lỗi từ server
+            duration: 3000,
+            close: true,
+            gravity: "top", 
+            position: 'right',
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)", // Màu sắc nền cho toast lỗi
+            stopOnFocus: true, // Ngưng thời gian đếm ngược khi toast được focus
+        }).showToast();
+            }
+        })
+        .catch((error) => {
+           
+
+            console.error('Error:', error);
+    // Có thể thêm Toastify tại đây để thông báo lỗi mạng hoặc lỗi không xác định
+    Toastify({
+        text: "An unexpected error occurred. Please try again.", // Bạn có thể thay đổi nội dung thông báo
+        duration: 3000,
+        close: true,
+        gravity: "top", 
+        position: 'right',
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)", // Màu sắc nền cho toast lỗi
+        stopOnFocus: true, // Ngưng thời gian đếm ngược khi toast được focus
+    }).showToast();
+        });
+    });
+});
+
+
+
+</script>
+</html>
